@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="col-xs-12 profile hrline PDB10 MGB10">
+		<img alt="image" class="img-circle img-lg" src="{{photo.url}}">
+		<h3>{{user.name}}</h3>
+		<small class="text-muted">{{user.email}}</small>
+	</div>
+	<div class="col-xs-12 col-sm-offset-3 col-sm-9 col-md-offset-4 col-md-8">
+		<h5 class="title postTitle">Company</h5>
+		<p class="body">{{user.company.name}}</p>
+		<small class="text-muted">{{user.company.catchPhrase}}</small><br/>
+		<h5 class="title postTitle">Address</h5>
+		<p class="body">{{user.address.street}}, {{user.address.suite}}</p>
+		<p class="body">{{user.address.city}}, {{user.address.zipcode}}</p>
+		<h5 class="title postTitle">Phone</h5>
+		<p class="text-muted">{{user.phone}}</p>
+	</div>
+</div>

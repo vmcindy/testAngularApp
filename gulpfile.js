@@ -4,6 +4,7 @@ var uglify 		= require('gulp-uglify');
 var concat 		= require('gulp-concat');
 var minify_css 	= require('gulp-minify-css');
 var sass 		= require('gulp-sass');
+var less 		= require('gulp-less');
 var watch 		= require('gulp-watch');
 var plumber 	= require('gulp-plumber');
 var prefix 		= require('gulp-autoprefixer');
@@ -13,16 +14,17 @@ var mainBowerFiles = require('main-bower-files');
 var browserSync = require('browser-sync').create();
 
 var paths = {
-	appStyles: './app/css/*.scss',
-	appScripts: './app/js/*.js',
+	appStyles: './app/styles/*.scss',
+	appScripts: ['./app/js/*.js','./app/js/**/*.js'],
 	dest: './build/'
 };
 
 // ---------------------------------------------------------------------
 
 gulp.task('vendor-styles', function(){
-	var vendorStyles = mainBowerFiles({ filter: new RegExp('.*css$', 'i') });
+	var vendorStyles = mainBowerFiles({ filter: new RegExp('.*less$', 'i') });
 	return gulp.src(vendorStyles)
+    .pipe(less())
 	.pipe(plumber())
 	.pipe(concat('vendor.css'))
 	.pipe(minify_css())

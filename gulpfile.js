@@ -13,26 +13,24 @@ var mainBowerFiles = require('main-bower-files');
 var browserSync = require('browser-sync').create();
 
 var paths = {
-  appStyles: './app/css/*.scss',
-  appScripts: './app/js/*.js',
-  vendorStyles: './bower_components/bootstrap/dist/css/bootstrap.min.css',
-  vendorScripts : ['./bower_components/jquery/dist/jquery.min.js', './bower_components/bootstrap/dist/js/bootstrap.min.js', './bower_components/angular/angular.min.js', './bower_components/angular-route/angular-route.min.js'],
-  dest: './app/'
+	appStyles: './app/css/*.scss',
+	appScripts: './app/js/*.js',
+	dest: './build/'
 };
 
 // ---------------------------------------------------------------------
 
 gulp.task('vendor-styles', function(){
-	gulp.src(paths.vendorStyles)
+	var vendorStyles = mainBowerFiles({ filter: new RegExp('.*css$', 'i') });
+	return gulp.src(vendorStyles)
 	.pipe(plumber())
 	.pipe(concat('vendor.css'))
 	.pipe(minify_css())
 	.pipe(gulp.dest(paths.dest))
-	.pipe(notify({message: 'vendor css files have been compiled!!!'}));
 });
 
 gulp.task('app-styles', function(){
-	gulp.src(paths.appStyles)
+	return gulp.src(paths.appStyles)
 	.pipe(sourcemaps.init())
 	.pipe(plumber())
 	.pipe(sass())
@@ -40,32 +38,36 @@ gulp.task('app-styles', function(){
 	.pipe(sourcemaps.write())
 	.pipe(minify_css())
 	.pipe(gulp.dest(paths.dest))
-	.pipe(notify({message: 'app sass files have been compiled!!!'}));
 });
 
 gulp.task('vendor-scripts', function () {
-  var bowerFiles = mainBowerFiles({ filter: new RegExp('.*js$', 'i') });
-  var vendorScripts = bowerFiles.concat(paths.vendorScripts) 
-  return gulp.src(vendorScripts)
+	var vendorScripts = mainBowerFiles({ filter: new RegExp('.*js$', 'i') });
+	return gulp.src(vendorScripts)
+ 	.pipe(plumber())
     .pipe(concat('vendor.js'))
 	.pipe(gulp.dest(paths.dest))
 });
 
 gulp.task('app-scripts', function () {
-  return gulp.src(paths.appScripts)
+	return gulp.src(paths.appScripts)
+ 	.pipe(sourcemaps.init())
+	.pipe(plumber())
     .pipe(concat('app-min.js'))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest(paths.dest))
 });
 
 gulp.task('watch', function(){
-	gulp.watch('app/styles/*.scss', ['styles']);
-	gulp.watch('app/js/*.js', ['scripts']);
+	gulp.watch('app/styles/*.scss', ['app-styles']);
+	gulp.watch('app/js/*.js', ['app-scripts']);
+	gulp.watch('app/views/*.html', ['default']);
+	gulp.watch('index.html', ['default']);
 });
 
 gulp.task('serve', function() {
     browserSync.init({
         server: {
-            baseDir: "./app"
+            baseDir: "./"
         }
     });
 });

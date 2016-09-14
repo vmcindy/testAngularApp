@@ -61,7 +61,7 @@ gulp.task('app-scripts', function () {
 
 gulp.task('watch', function(){
 	gulp.watch('app/styles/*.scss', ['app-styles']);
-	gulp.watch('app/js/*.js', ['app-scripts']);
+	gulp.watch(['app/js/*.js','app/js/**/*.js'], ['app-scripts']);
 	gulp.watch('app/views/*.html', ['default']);
 	gulp.watch('index.html', ['default']);
 });

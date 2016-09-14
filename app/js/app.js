@@ -1,4 +1,5 @@
-var testApp = angular.module('testAppAngular', ['ngRoute']);
+angular
+	.module('testAppAngular', ['ngRoute']);
 
 $("#menu-toggle").click(function(e) {
     e.preventDefault();

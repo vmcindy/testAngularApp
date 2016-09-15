@@ -5,42 +5,55 @@
         .module('testAppAngular')
         .controller('postController', postController);
 
-    function postController ($scope, $routeParams, postsService, usersService, photosService) {
-        var postPromise = function() {
+    postController.inject = ['$routeParams', 'postsService', 'usersService', 'photosService'];
+
+    function postController ($routeParams, postsService, usersService, photosService) {
+        var vm = this;
+
+        vm.postComments = '';
+        vm.postCommentsPromise = postCommentsPromise;
+        vm.postPromise = '';
+        vm.postPromise = postPromise;
+        vm.user = '';
+        vm.userPromise = userPromise;
+        vm.photo = '';
+        vm.photoPromise = photoPromise;
+
+        function postPromise () {
             postsService.postCall($routeParams.postId)
             .then(function(data){
-                $scope.post = data;
-                userPromise();
-                photoPromise();
+                vm.post = data;
+                vm.userPromise();
+                vm.photoPromise();
             },function(error){
                 console.log("From postController - error",error);
             })
         };
-        var postCommentsPromise = function() {
+        function postCommentsPromise () {
             postsService.postCommentsCall($routeParams.postId)
             .then(function(data){
-                $scope.postComments = data;
+                vm.postComments = data;
             },function(error){
                 console.log("From postController - error",error);
             })
         };
-        var userPromise = function() {
-            usersService.userCall($scope.post.userId)
+        function userPromise () {
+            usersService.userCall(vm.post.userId)
             .then(function(data){
-                $scope.user = data;
+                vm.user = data;
             },function(error){
                 console.log("From userControllererror",error);
             })
         };
-        var photoPromise = function() {
-            photosService.photoCall($scope.post.userId)
+        function photoPromise () {
+            photosService.photoCall(vm.post.userId)
             .then(function(data){
-                $scope.photo = data;
+                vm.photo = data;
             },function(error){
                 console.log("From photoController - error",error);
             })
         };
-        postPromise();
-        postCommentsPromise();
+        vm.postPromise();
+        vm.postCommentsPromise();
     }
 })();

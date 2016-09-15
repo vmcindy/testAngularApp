@@ -5,33 +5,44 @@
         .module('testAppAngular')
         .controller('postsController', postsController);
 
-	function postsController ($scope, postsService, usersService, photosService) {
-		var postsPromise = function() {
+    postsController.inject = ['postsService', 'usersService', 'photosService'];
+
+	function postsController (postsService, usersService, photosService) {
+		var vm = this;
+
+		vm.photos = '';
+		vm.photosPromise = photosPromise;
+		vm.posts = '';
+		vm.postsPromise = postsPromise;
+		vm.users = '';
+		vm.usersPromise = usersPromise;
+
+		function postsPromise () {
 			postsService.postsCall()
 			.then(function(data){
-				$scope.posts = data;
-				usersPromise();
-				photosPromise();
+				vm.posts = data;
+				vm.usersPromise();
+				vm.photosPromise();
 			},function(error){
 				console.log("From postsController - error",error);
 			})
 		};
-		var usersPromise = function() {
+		function usersPromise () {
 			usersService.usersCall()
 			.then(function(data){
-				$scope.users = data;
+				vm.users = data;
 			},function(error){
 				console.log("From usersController - error",error);
 			})
 		};
-	    var photosPromise = function() {
+	    function photosPromise () {
 	        photosService.photosCall()
 	        .then(function(data){
-	            $scope.photos = data;
+	            vm.photos = data;
 	        },function(error){
 	            console.log("From photoController - error",error);
 	        })
 	    };
-		postsPromise();
+		vm.postsPromise();
 	}
 })();

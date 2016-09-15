@@ -4,19 +4,23 @@
       $routeProvider.
       when('/', {
          templateUrl: './app/views/posts.html',
-         controller: 'postsController'
+         controller: 'postsController',
+         controllerAs: 'vm'
       }).
       when('/posts/:postId', {
          templateUrl: './app/views/post.html',
-         controller: 'postController'
+         controller: 'postController',
+         controllerAs: 'vm'
       }).
       when('/users', {
          templateUrl: './app/views/users.html',
-         controller: 'usersController'
+         controller: 'usersController',
+         controllerAs: 'vm'
       }).
       when('/users/:userId', {
          templateUrl: './app/views/user.html',
-         controller: 'userController'
+         controller: 'userController',
+         controllerAs: 'vm'
       }).
       otherwise({
          redirectTo: '/'

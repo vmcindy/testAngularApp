@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
   "author": "vmcindy",
   "license": "ISC",
   "dependencies": {
@@ -25,6 +21,7 @@
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^2.0.0",
-    "gulp-watch": "^4.3.9"
+    "gulp-watch": "^4.3.9",
+    "main-bower-files": "^2.13.1"
   }
 }

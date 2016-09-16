@@ -3,6 +3,7 @@ var gulp 		= require('gulp');
 var uglify 		= require('gulp-uglify');
 var concat 		= require('gulp-concat');
 var minify_css 	= require('gulp-minify-css');
+var uglify 		= require('gulp-uglify'); 
 var sass 		= require('gulp-sass');
 var less 		= require('gulp-less');
 var watch 		= require('gulp-watch');
@@ -47,6 +48,7 @@ gulp.task('vendor-scripts', function () {
 	return gulp.src(vendorScripts)
  	.pipe(plumber())
     .pipe(concat('vendor.js'))
+    .pipe(uglify())
 	.pipe(gulp.dest(paths.dest))
 });
 

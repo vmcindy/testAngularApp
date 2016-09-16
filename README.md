@@ -1,5 +1,5 @@
 # testAngularApp
-This app gives an idea to create a basic angular app with some best practices.<br><br>
+This app gives an idea to create a basic angular app with some best practices.<br>
 
 Steps to Run the app:<br>
 1. Clone the project locally and open command line in the root level of the project.<br>

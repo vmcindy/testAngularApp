@@ -15,13 +15,18 @@
         vm.users = '';
         vm.usersPromise = usersPromise;
 
+		activate();
+
+		function activate () {
+			vm.usersPromise();
+			vm.photosPromise();
+		}
 		function usersPromise () {
 			usersService.usersCall()
 			.then(function(data){
 				vm.users = data;
-				vm.photosPromise();
 			},function(error){
-				console.log("From usersController - error",error);
+                vm.users = [];
 			})
 		};
 	    function photosPromise () {
@@ -29,9 +34,8 @@
 	        .then(function(data){
 				vm.photos = data;
 	        },function(error){
-	            console.log("From photoController - error",error);
+                vm.photos = [];
 	        })
 	    };
-		vm.usersPromise();
 	}
 })();

@@ -17,14 +17,19 @@
 		vm.users = '';
 		vm.usersPromise = usersPromise;
 
+		activate();
+
+		function activate () {
+			vm.postsPromise();
+			vm.usersPromise();
+			vm.photosPromise();
+		}
 		function postsPromise () {
 			postsService.postsCall()
 			.then(function(data){
 				vm.posts = data;
-				vm.usersPromise();
-				vm.photosPromise();
 			},function(error){
-				console.log("From postsController - error",error);
+				vm.posts = [];
 			})
 		};
 		function usersPromise () {
@@ -32,7 +37,7 @@
 			.then(function(data){
 				vm.users = data;
 			},function(error){
-				console.log("From usersController - error",error);
+				vm.users = [];
 			})
 		};
 	    function photosPromise () {
@@ -40,9 +45,8 @@
 	        .then(function(data){
 	            vm.photos = data;
 	        },function(error){
-	            console.log("From photoController - error",error);
+				vm.photos = [];
 	        })
 	    };
-		vm.postsPromise();
 	}
 })();

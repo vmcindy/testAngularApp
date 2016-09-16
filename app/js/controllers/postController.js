@@ -12,13 +12,19 @@
 
         vm.postComments = '';
         vm.postCommentsPromise = postCommentsPromise;
-        vm.postPromise = '';
+        vm.post = '';
         vm.postPromise = postPromise;
         vm.user = '';
         vm.userPromise = userPromise;
         vm.photo = '';
         vm.photoPromise = photoPromise;
 
+        activate();
+
+        function activate () {
+            vm.postPromise();
+            vm.postCommentsPromise();
+        }
         function postPromise () {
             postsService.postCall($routeParams.postId)
             .then(function(data){
@@ -26,7 +32,7 @@
                 vm.userPromise();
                 vm.photoPromise();
             },function(error){
-                console.log("From postController - error",error);
+                vm.post = [];
             })
         };
         function postCommentsPromise () {
@@ -34,7 +40,7 @@
             .then(function(data){
                 vm.postComments = data;
             },function(error){
-                console.log("From postController - error",error);
+                vm.postComments = [];
             })
         };
         function userPromise () {
@@ -42,7 +48,7 @@
             .then(function(data){
                 vm.user = data;
             },function(error){
-                console.log("From userControllererror",error);
+                vm.user = [];
             })
         };
         function photoPromise () {
@@ -50,10 +56,8 @@
             .then(function(data){
                 vm.photo = data;
             },function(error){
-                console.log("From photoController - error",error);
+                vm.photo = [];
             })
         };
-        vm.postPromise();
-        vm.postCommentsPromise();
     }
 })();

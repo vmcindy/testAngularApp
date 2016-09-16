@@ -15,12 +15,18 @@
         vm.user = '';
         vm.userPromise = userPromise;
 
+        activate();
+
+        function activate () {
+            vm.userPromise();
+            vm.photoPromise();
+        }
     	function userPromise () {
     		usersService.userCall($routeParams.userId)
     		.then(function(data){
     			vm.user = data;
     		},function(error){
-    			console.log("From userController - error",error);
+                vm.user = [];
     		})
     	};
         function photoPromise () {
@@ -28,10 +34,8 @@
             .then(function(data){
                 vm.photo = data;
             },function(error){
-                console.log("From photoController - error",error);
+                vm.photo = [];
             })
         };
-        vm.userPromise();
-        vm.photoPromise();
     }
 })();

@@ -1,6 +1,16 @@
- angular
-   .module('testAppAngular')
-   .config(['$routeProvider', function($routeProvider) {
+(function() {
+   'use strict';
+
+   angular
+      .module('testAppAngular')
+      .constant('config', {
+         'root': 'http://jsonplaceholder.typicode.com',
+      })
+      .config(config);
+
+   config.$inject = ['$routeProvider'];
+
+   function config($routeProvider) {
       $routeProvider.
       when('/', {
          templateUrl: './app/views/posts.html',
@@ -25,4 +35,5 @@
       otherwise({
          redirectTo: '/'
       });
-   }]);
+   }
+})();

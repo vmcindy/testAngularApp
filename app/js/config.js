@@ -8,32 +8,39 @@
       })
       .config(config);
 
-   config.$inject = ['$routeProvider'];
+   config.$inject = ['$routeProvider', '$locationProvider'];
 
-   function config($routeProvider) {
+   function config($routeProvider, $locationProvider) {
       $routeProvider.
       when('/', {
-         templateUrl: './app/views/posts.html',
+         templateUrl: 'posts.html',
          controller: 'postsController',
          controllerAs: 'vm'
       }).
       when('/posts/:postId', {
-         templateUrl: './app/views/post.html',
+         templateUrl: 'post.html',
          controller: 'postController',
          controllerAs: 'vm'
       }).
       when('/users', {
-         templateUrl: './app/views/users.html',
+         templateUrl: 'users.html',
          controller: 'usersController',
          controllerAs: 'vm'
       }).
       when('/users/:userId', {
-         templateUrl: './app/views/user.html',
+         templateUrl: 'user.html',
          controller: 'userController',
          controllerAs: 'vm'
       }).
       otherwise({
          redirectTo: '/'
       });
+
+      // if(window.history && window.history.pushState){
+      //    $locationProvider.html5Mode({
+      //       enabled: true,
+      //       requireBase: false
+      //    });
+      // }
    }
 })();

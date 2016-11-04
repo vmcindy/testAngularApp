@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -7,10 +7,10 @@
 
     usersService.$inject = ['config', 'httpService'];
 
-    function usersService (config, httpService) {
+    function usersService(config, httpService) {
         var service = {
-            usersCall : usersCall,
-            userCall : userCall
+            usersCall: usersCall,
+            userCall: userCall
         }
 
         return service;
@@ -20,7 +20,7 @@
             return httpService.getCall(usersUrl);
         }
         function userCall(userId) {
-            var usersUrl = config.root + '/users/'+userId;
+            var usersUrl = config.root + '/users/' + userId;
             return httpService.getCall(usersUrl);
         }
     }

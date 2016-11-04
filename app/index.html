@@ -1,40 +1,31 @@
 <!doctype>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>AngularJS Application</title>     
-	<link type="text/css" href="./css/vendor.css" rel="stylesheet">
-    <link type="text/css" href="./css/app-min.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/images/angular-favicon.ico" type="image/x-icon">
+    <title>AngularJS Application</title>
+    <link type="text/css" href="/css/vendor.css" rel="stylesheet">
+    <link type="text/css" href="/css/app-min.css" rel="stylesheet">
 </head>
-<body ng-app = "testAppAngular">
-    <div id="wrapper">
-        <!-- Sidebar - START -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand"><a href="#posts">Sample Angular App</a></li>
-                <li><a href="#posts">Posts</a></li>
-                <li><a href="#users">Users</a></li>
-            </ul>
-        </div>
-        <!-- Sidebar  - END -->
-        <!-- Page Content - START-->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div ng-view></div>
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
-                    </div>
-                </div>
+
+<body ng-app="testAppAngular">
+    <div class="container">
+        <div id="header" class="header">
+            <div class="row">
+                <ul class="nav nav-tabs">
+                    <li role="presentation"><a href="/">Posts</a></li>
+                    <li role="presentation"><a href="/users">Users</a></li>
+                </ul>
             </div>
         </div>
-        <!-- Page Content - END-->
+        <div id="body" class="section" ng-view></div>
     </div>
-    
-    <script type="text/javascript" src="./js/vendor.js"></script>
-    <script type="text/javascript" src="./js/app-min.js"></script>
-    <script type="text/javascript" src="./js/templates.js"></script>
+    <script type="text/javascript" src="/js/vendor.js"></script>
+    <script type="text/javascript" src="/js/app-min.js"></script>
+    <script type="text/javascript" src="/js/templates.js"></script>
 </body>
+
 </html>

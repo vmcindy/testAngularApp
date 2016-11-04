@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -7,10 +7,10 @@
 
     commentsService.$inject = ['config', 'httpService'];
 
-    function commentsService (config, httpService) {
+    function commentsService(config, httpService) {
         var service = {
-            commentsCall : commentsCall,
-            commentCall : commentCall
+            commentsCall: commentsCall,
+            commentCall: commentCall
         }
 
         return service;
@@ -20,7 +20,7 @@
             return httpService.getCall(commentsUrl);
         }
         function commentCall(commentId) {
-            var commentsUrl = config.root + '/comments/'+commentId;
+            var commentsUrl = config.root + '/comments/' + commentId;
             return httpService.getCall(commentsUrl);
         }
     }

@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -7,22 +7,22 @@
 
     httpService.$inject = ['$http', '$q'];
 
-    function httpService ($http, $q) {
+    function httpService($http, $q) {
         var service = {
-            getCall : getCall
+            getCall: getCall
         }
 
         return service;
-        
-        function getCall (url) {
+
+        function getCall(url) {
             var deferred = $q.defer();
-            $http.get(url).then(function(response) {
+            $http.get(url).then(function (response) {
                 if (typeof response.data === 'object') {
                     deferred.resolve(response.data);
                 } else {
                     deferred.reject(response.data);
                 }
-            }, function(error) {
+            }, function (error) {
                 console.log('Error getting data from', url, error)
             });
 

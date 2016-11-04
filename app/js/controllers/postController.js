@@ -1,13 +1,13 @@
-(function() {
+(function () {
     'use strict';
-    
+
     angular
         .module('testAppAngular')
         .controller('postController', postController);
 
     postController.inject = ['$routeParams', 'postsService', 'usersService', 'photosService'];
 
-    function postController ($routeParams, postsService, usersService, photosService) {
+    function postController($routeParams, postsService, usersService, photosService) {
         var vm = this;
 
         vm.postComments = '';
@@ -21,43 +21,43 @@
 
         activate();
 
-        function activate () {
+        function activate() {
             vm.postPromise();
             vm.postCommentsPromise();
         }
-        function postPromise () {
+        function postPromise() {
             postsService.postCall($routeParams.postId)
-            .then(function(data){
-                vm.post = data;
-                vm.userPromise();
-                vm.photoPromise();
-            },function(error){
-                vm.post = [];
-            })
+                .then(function (data) {
+                    vm.post = data;
+                    vm.userPromise();
+                    vm.photoPromise();
+                }, function (error) {
+                    vm.post = [];
+                })
         };
-        function postCommentsPromise () {
+        function postCommentsPromise() {
             postsService.postCommentsCall($routeParams.postId)
-            .then(function(data){
-                vm.postComments = data;
-            },function(error){
-                vm.postComments = [];
-            })
+                .then(function (data) {
+                    vm.postComments = data;
+                }, function (error) {
+                    vm.postComments = [];
+                })
         };
-        function userPromise () {
+        function userPromise() {
             usersService.userCall(vm.post.userId)
-            .then(function(data){
-                vm.user = data;
-            },function(error){
-                vm.user = [];
-            })
+                .then(function (data) {
+                    vm.user = data;
+                }, function (error) {
+                    vm.user = [];
+                })
         };
-        function photoPromise () {
+        function photoPromise() {
             photosService.photoCall(vm.post.userId)
-            .then(function(data){
-                vm.photo = data;
-            },function(error){
-                vm.photo = [];
-            })
+                .then(function (data) {
+                    vm.photo = data;
+                }, function (error) {
+                    vm.photo = [];
+                })
         };
     }
 })();

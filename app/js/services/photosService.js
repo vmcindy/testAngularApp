@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -7,10 +7,10 @@
 
     photosService.$inject = ['config', 'httpService'];
 
-    function photosService (config, httpService) {
+    function photosService(config, httpService) {
         var service = {
-            photosCall : photosCall,
-            photoCall : photoCall
+            photosCall: photosCall,
+            photoCall: photoCall
         }
 
         return service;
@@ -20,7 +20,7 @@
             return httpService.getCall(photosUrl);
         }
         function photoCall(photoId) {
-            var photosUrl = config.root + '/photos/'+photoId;
+            var photosUrl = config.root + '/photos/' + photoId;
             return httpService.getCall(photosUrl);
         }
     }

@@ -1,13 +1,13 @@
-(function() {
-    'use strict';
-    
-    angular
-        .module('testAppAngular')
-        .controller('postsController', postsController);
+(function () {
+	'use strict';
 
-    postsController.inject = ['postsService', 'usersService', 'photosService'];
+	angular
+		.module('testAppAngular')
+		.controller('postsController', postsController);
 
-	function postsController (postsService, usersService, photosService) {
+	postsController.inject = ['postsService', 'usersService', 'photosService'];
+
+	function postsController(postsService, usersService, photosService) {
 		var vm = this;
 
 		vm.photos = '';
@@ -19,34 +19,34 @@
 
 		activate();
 
-		function activate () {
+		function activate() {
 			vm.postsPromise();
 			vm.usersPromise();
 			vm.photosPromise();
 		}
-		function postsPromise () {
+		function postsPromise() {
 			postsService.postsCall()
-			.then(function(data){
-				vm.posts = data;
-			},function(error){
-				vm.posts = [];
-			})
+				.then(function (data) {
+					vm.posts = data;
+				}, function (error) {
+					vm.posts = [];
+				})
 		};
-		function usersPromise () {
+		function usersPromise() {
 			usersService.usersCall()
-			.then(function(data){
-				vm.users = data;
-			},function(error){
-				vm.users = [];
-			})
+				.then(function (data) {
+					vm.users = data;
+				}, function (error) {
+					vm.users = [];
+				})
 		};
-	    function photosPromise () {
-	        photosService.photosCall()
-	        .then(function(data){
-	            vm.photos = data;
-	        },function(error){
-				vm.photos = [];
-	        })
-	    };
+		function photosPromise() {
+			photosService.photosCall()
+				.then(function (data) {
+					vm.photos = data;
+				}, function (error) {
+					vm.photos = [];
+				})
+		};
 	}
 })();

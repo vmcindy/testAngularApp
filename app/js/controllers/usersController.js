@@ -1,41 +1,41 @@
-(function() {
-    'use strict';
-    
-    angular
-        .module('testAppAngular')
-        .controller('usersController', usersController);
+(function () {
+	'use strict';
 
-    usersController.inject = ['usersService', 'photosService'];
+	angular
+		.module('testAppAngular')
+		.controller('usersController', usersController);
 
-	function usersController (usersService, photosService) {
-        var vm = this;
+	usersController.inject = ['usersService', 'photosService'];
 
-        vm.photos = '';
-        vm.photosPromise = photosPromise;
-        vm.users = '';
-        vm.usersPromise = usersPromise;
+	function usersController(usersService, photosService) {
+		var vm = this;
+
+		vm.photos = '';
+		vm.photosPromise = photosPromise;
+		vm.users = '';
+		vm.usersPromise = usersPromise;
 
 		activate();
 
-		function activate () {
+		function activate() {
 			vm.usersPromise();
 			vm.photosPromise();
 		}
-		function usersPromise () {
+		function usersPromise() {
 			usersService.usersCall()
-			.then(function(data){
-				vm.users = data;
-			},function(error){
-                vm.users = [];
-			})
+				.then(function (data) {
+					vm.users = data;
+				}, function (error) {
+					vm.users = [];
+				})
 		};
-	    function photosPromise () {
-	        photosService.photosCall()
-	        .then(function(data){
-				vm.photos = data;
-	        },function(error){
-                vm.photos = [];
-	        })
-	    };
+		function photosPromise() {
+			photosService.photosCall()
+				.then(function (data) {
+					vm.photos = data;
+				}, function (error) {
+					vm.photos = [];
+				})
+		};
 	}
 })();

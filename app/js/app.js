@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
-    
-    angular
-		.module('testAppAngular', ['ngRoute']);
+(function () {
+  'use strict';
 
-	$("#menu-toggle").click(function(e) {
-	    e.preventDefault();
-	    $("#wrapper").toggleClass("toggled");
-	});
+  angular
+    .module('testAppAngular', ['ngRoute']);
+
 })();

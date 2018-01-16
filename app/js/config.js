@@ -4,7 +4,8 @@
     angular
         .module('testAppAngular')
         .constant('config', {
-            'root': 'http://jsonplaceholder.typicode.com',
+            // 'root': 'http://jsonplaceholder.typicode.com',
+            'root': 'http://localhost:3300', //Run testRestApi, to connect to Local API server
         })
         .config(config);
 
